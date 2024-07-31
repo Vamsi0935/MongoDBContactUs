@@ -1,0 +1,27 @@
+body {
+    background-color: powderblue;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact-form {
+    max-width: 550px;
+    width: 100%;
+    padding: 3%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.centered-button {
+    display: block;
+    margin: 20px auto;
+}
+
+.centered-button:hover {
+    border-radius: 25px;
+}
