@@ -36,20 +36,21 @@ const contactFormSchema = new mongoose.Schema({
   },
 });
 
-const Contact = mongoose.model("Contact", contactFormSchema); 
+const Contact = mongoose.model("Contact", contactFormSchema);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.post("/contact", async (req, res) => {
-  const data = ({
+  console.log(req.body);
+  const data = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     number: req.body.number,
     country: req.body.country,
     message: req.body.message,
-  });
+  };
 
   try {
     await Contact.create(data);
