@@ -1,14 +1,20 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
 
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+app.use(
+  cors({
+    origin: ["https://mongo-db-contact-us.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true,
   })
+);
+
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected...");
   })
