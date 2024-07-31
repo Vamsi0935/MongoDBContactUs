@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = express();
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect("mongodb://localhost:27017/contactform")
   .then(() => {
     console.log("MongoDB connected...");
   })
