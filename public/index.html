@@ -62,13 +62,13 @@
                 const response = await fetch('/contact', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ firstname, lastname, number, country, message }),
-                });
+                }).then(response => response.json()).then(data => console.log(data))
 
-                const result = await response.json();
-                alert(result.message);
+                // const result = await response.json();
+                // alert(result.message);
             } catch (error) {
                 alert('Error: ' + error.message);
             }

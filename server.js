@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/contactform")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected...");
   })
@@ -41,6 +41,10 @@ const Contact = mongoose.model("Contact", contactFormSchema);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({ error: err.message });
+});
 
 app.post("/contact", async (req, res) => {
   console.log(req.body);
