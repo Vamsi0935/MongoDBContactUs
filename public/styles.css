@@ -1,10 +1,12 @@
 body {
-    background-color: powderblue;
+    background-image: url("https://www.m19lab.com/img/ContactUs/Banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
 }
 
