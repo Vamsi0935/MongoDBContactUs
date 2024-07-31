@@ -43,13 +43,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.post("/contact", async (req, res) => {
-  const data = {
+  const data = ({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     number: req.body.number,
     country: req.body.country,
     message: req.body.message,
-  };
+  });
 
   try {
     await Contact.create(data);
