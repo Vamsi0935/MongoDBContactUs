@@ -65,19 +65,30 @@
             const country = document.getElementById('country').value;
             const message = document.getElementById('message').value;
 
-            try {
-                const response = await fetch('http://localhost:5000/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ firstname, lastname, number, country, message }),
+            const response = await fetch('/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ firstname, lastname, number, country, message }),
+            })
+                .then(response => {
+                    const contentType = response.headers.get('Content-Type');
+                    if (contentType && contentType.includes('application/json')) {
+                        return response.json();
+                    } else {
+                        return response.text().then(text => {
+                            throw new Error(`Unexpected response type: ${text}`);
+                        });
+                    }
                 })
-                const result = await response.json();
-                alert(result.message);
-            } catch (error) {
-                alert('Error: ' + error.message);
-            }
+                .then(data => {
+                    console.log(data);
+                    alert("Contact form submitted successfully....")
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     </script>
 </body>
