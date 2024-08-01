@@ -37,7 +37,14 @@
             </div>
             <div class="mb-3">
                 <label for="country" class="form-label"><b>Country</b></label>
-                <input type="text" class="form-control" id="country" placeholder="e.g., india" required>
+                <select class="form-select" id="country" aria-label="Default select example" required>
+                    <option selected>Select country</option>
+                    <option value="India">India</option>
+                    <option value="US">US</option>
+                    <option value="UK">UK</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="message" class="form-label"><b>What would you like to discuss?</b></label>
@@ -66,7 +73,6 @@
                     },
                     body: JSON.stringify({ firstname, lastname, number, country, message }),
                 })
-
                 const result = await response.json();
                 alert(result.message);
             } catch (error) {
