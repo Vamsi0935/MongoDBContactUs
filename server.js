@@ -48,19 +48,19 @@ app.use((err, req, res, next) => {
 
 app.post("/contact", async (req, res) => {
   console.log(req.body);
-  const data = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    number: req.body.number,
-    country: req.body.country,
-    message: req.body.message,
-  };
-
   try {
+    const data = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      number: req.body.number,
+      country: req.body.country,
+      message: req.body.message,
+    };
+
     await Contact.create(data);
     res.status(201).json({ message: "Contact form submitted successfully!" });
   } catch (error) {
-    console.error(error);
+    console.error("Database Error: ", error);
     res.status(500).json({ message: "Error submitting contact form" });
   }
 });
