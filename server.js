@@ -1,4 +1,5 @@
 const express = require("express");
+const router = require("./routes");
 const path = require("path");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -7,6 +8,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(cors());
+app.use("/api", router);
 
 mongoose
   .connect(
@@ -79,3 +81,4 @@ app.post("/contact", async (req, res) => {
 app.listen(5000, () => {
   console.log("Server is running.....");
 });
+module.exports = app;
